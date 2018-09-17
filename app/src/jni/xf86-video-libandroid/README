@@ -1,0 +1,5 @@
+xf86-video-hwcomposer - frame buffer driver for the Xorg X server,
+utilizing Android HWComposer API through libhybris for rendering.
+
+It's heavily based on xf86-video-dummy with HWComposer API calls and
+rendering through OpenGL ES2 added.

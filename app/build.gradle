@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+def projectAbis = ['armeabi-v7a']
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '25.0.0'
+
+    defaultConfig {
+        applicationId "org.x.android"
+        minSdkVersion 19
+        targetSdkVersion 19
+    
+        ndk {
+            abiFilters = projectAbis
+        }
+        
+        externalNativeBuild {
+			ndkBuild {
+				targets 'Xorg', 'android_drv', 'dlinput_drv', 'xkbcomp'
+				cFlags
+			}
+		}
+	}
+	
+	sourceSets {
+		main {
+			assets.srcDirs = ['src/assets']
+		}
+	}
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/jni/Android.mk'
+        }
+    }
+}
+
+afterEvaluate { project ->
+    // do work on `Project` object just like normal
+    project.android.buildTypes.all { theBuildType ->
+		def xkbcompPath
+		def theTask
+		for (String abi: projectAbis){
+			xkbcompPath = "${buildDir}/intermediates/ndkBuild/${theBuildType.name}/obj/local/${abi}/xkbcomp"
+			tasks.create (name: "${theBuildType.name}_${abi}_CopyAssets", dependsOn: "externalNativeBuild${theBuildType.name.capitalize()}", type: Copy){
+				from xkbcompPath
+				into "src/assets/${abi}"
+			}
+			tasks.getByName("assemble${theBuildType.name.capitalize()}").dependsOn "${theBuildType.name}_${abi}_CopyAssets"
+		}
+    }
+}

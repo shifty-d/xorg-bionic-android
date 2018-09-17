@@ -1,0 +1,8 @@
+#!/bin/bash
+cur_path=`pwd`
+folders=`ls`
+
+for f in $folders; do
+	count=$(find $f -type f | wc -l)
+	echo $count files in $f
+done
