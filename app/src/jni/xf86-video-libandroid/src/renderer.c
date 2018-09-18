@@ -328,7 +328,7 @@ ErrorF("Updating screen2 (surface = %p)\n", renderer->surface);
     glUniform1i(renderer->rootShader.texture, 0);
     
     glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, hwc->hwcWidth, hwc->hwcHeight, GL_RGBA, GL_UNSIGNED_BYTE, renderer->pixels);
-
+	ErrorF("EGL error: 0x%x, pixels 0x%p \n", glGetError(), renderer->pixels);
     glVertexAttribPointer(renderer->rootShader.position, 2, GL_FLOAT, 0, 0, squareVertices);
     glEnableVertexAttribArray(renderer->rootShader.position);
 

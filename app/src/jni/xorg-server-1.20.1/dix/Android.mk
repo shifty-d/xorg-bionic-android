@@ -42,8 +42,8 @@ LOCAL_SRC_FILES := 			\
 
 LOCAL_SRC_FILES += stubmain.c
 
-LOCAL_STATIC_LIBRARIES :=	\
-    libXServer-hw 				\
+LOCAL_STATIC_LIBRARIES :=		\
+    libXServer-xfree86			\
     libXServer-composite 		\
     libXServer-xfixes 			\
     libXServer-dbe 				\

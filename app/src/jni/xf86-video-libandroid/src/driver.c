@@ -611,6 +611,7 @@ CreateScreenResources(ScreenPtr pScreen)
         if (!pScreen->ModifyPixmapHeader(rootPixmap, -1, -1, -1, -1, -1, hwc->renderer.pixels))
             FatalError("Couldn't adjust screen pixmap\n");
     }
+    ErrorF("Pixmap pixels: 0x%p\n", rootPixmap->devPrivate.ptr);
 
     hwc->damage = DamageCreate(NULL, NULL, DamageReportNone, TRUE,
                                 pScreen, rootPixmap);

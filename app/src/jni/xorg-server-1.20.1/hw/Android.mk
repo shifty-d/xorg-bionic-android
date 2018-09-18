@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_MODULE    := libXServer-hw
+LOCAL_MODULE    := libXServer-xfree86
 LOCAL_C_INCLUDES := $(XSERVER_INCLUDES)
 LOCAL_CFLAGS    := \
     -DHAVE_DIX_CONFIG_H \
@@ -92,9 +92,6 @@ LOCAL_SRC_FILES := 	\
     xfree86/ramdac/xf86RamDac.c  \
     xfree86/ramdac/xf86RamDacCmap.c
 
-    #xfree86/common/xf86pciBus.c    \
-    #xfree86/common/xf86VGAarbiter.c    \
-    #xfree86/common/xf86sbusBus.c
 LOCAL_STATIC_LIBRARIES := libXfont libpciaccess
 LOCAL_SHARED_LIBRARIES := libpixman
 
