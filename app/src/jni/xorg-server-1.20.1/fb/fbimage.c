@@ -238,7 +238,6 @@ fbGetImage(DrawablePtr pDrawable,
                   FbBitsStrideToStipStride(srcStride),
                   (x + srcXoff) * srcBpp,
                   dst, dstStride, 0, w * srcBpp, h, GXcopy, FB_ALLONES, srcBpp);
-
         if (pm != FB_ALLONES) {
             for (int i = 0; i < dstStride * h; i++)
                 dst[i] &= pm;

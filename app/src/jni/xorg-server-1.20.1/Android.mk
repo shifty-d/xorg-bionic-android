@@ -28,34 +28,13 @@ XSERVER_INCLUDES :=							\
     $(LOCAL_PATH)/hw/xfree86/os-support/bus	\
     $(LOCAL_PATH)/hw/xfree86/parser			\
     $(LOCAL_PATH)/hw/xfree86/ramdac			\
-    $(LOCAL_PATH)/xfixes					\
-
-
-LOCAL_PATH := $(XSERVER_PATH)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE    := libXorg
-LOCAL_SRC_FILES := 		\
-    android/android.c	\
-    android/assets.c
-LOCAL_ALLOW_UNDEFINED_SYMBOLS := false
-LOCAL_EXPORT_C_INCLUDES := $(XSERVER_INCLUDES)
-LOCAL_CFLAGS := -DTARGET_ARCH_ABI=\"$(TARGET_ARCH_ABI)\"
-
-LOCAL_LDLIBS := -llog -landroid -lEGL -lGLESv1_CM
-
-LOCAL_SHARED_LIBRARIES := libX11
-
-LOCAL_STATIC_LIBRARIES := 	\
-    libXServer-dix 			\
-    libminzip				\
-    android_native_app_glue
-
-include $(BUILD_SHARED_LIBRARY)
-#include $(BUILD_EXECUTABLE)
+    $(LOCAL_PATH)/xfixes
 
 XSERVER_INCLUDES += $(GLOBAL_X11_INCLUDES)
 
+LOCAL_PATH := $(XSERVER_PATH)
+
+include $(XSERVER_PATH)/android/Android.mk
 include $(XSERVER_PATH)/fb/Android.mk
 include $(XSERVER_PATH)/mi/Android.mk
 include $(XSERVER_PATH)/render/Android.mk
@@ -74,5 +53,3 @@ include $(XSERVER_PATH)/hw/Android.mk
 include $(XSERVER_PATH)/config/Android.mk
 include $(XSERVER_PATH)/present/Android.mk
 include $(XSERVER_PATH)/dix/Android.mk
-
-$(call import-module,android/native_app_glue)

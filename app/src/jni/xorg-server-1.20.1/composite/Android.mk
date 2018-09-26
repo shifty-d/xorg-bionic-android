@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    := libXServer-composite 
 LOCAL_C_INCLUDES := $(XSERVER_INCLUDES)
-LOCAL_CFLAGS    := -DHAVE_DIX_CONFIG_H -DHAVE_XORG_CONFIG_H
+LOCAL_CFLAGS    := -DHAVE_DIX_CONFIG_H -DHAVE_XORG_CONFIG_H $(X4DROID_CFLAGS)
 LOCAL_SRC_FILES := 	\
     compalloc.c   \
     compext.c   \
@@ -12,4 +12,5 @@ LOCAL_SRC_FILES := 	\
     compoverlay.c   \
     compwindow.c
 
+LOCAL_SHARED_LIBRARIES := libpixman_full
 include $(BUILD_STATIC_LIBRARY)

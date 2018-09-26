@@ -8,8 +8,9 @@ LOCAL_CLANG_ASFLAGS_arm += -no-integrated-as
 LOCAL_SDK_VERSION := 14
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/pixman
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/pixman
 
-LOCAL_MODULE := libpixman
+LOCAL_MODULE := libpixman_full
 
 LOCAL_CFLAGS := -DHAVE_CONFIG_H -fvisibility=hidden
 

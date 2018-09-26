@@ -8,9 +8,10 @@ LOCAL_SRC_FILES := \
 	Inlines.c \
 	Zip.c
 
-LOCAL_MODULE := libminzip
+LOCAL_MODULE := libminzip_xorg
 
 LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)
+LOCAL_C_INCLUDES := $(GLOBAL_X11_INCLUDES)
 
 LOCAL_CLANG := true
 

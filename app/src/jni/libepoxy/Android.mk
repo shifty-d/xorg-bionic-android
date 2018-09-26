@@ -14,5 +14,6 @@ LOCAL_SRC_FILES :=		\
     src/egl_generated_dispatch.c
 
 LOCAL_LDLIBS := -ldl
+LOCAL_SHARED_LIBRARIES := 
 
 include $(BUILD_SHARED_LIBRARY)

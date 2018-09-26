@@ -1,13 +1,15 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_MODULE    := libXServer-xfree86
+LOCAL_MODULE    := libXFree86
 LOCAL_C_INCLUDES := $(XSERVER_INCLUDES)
+LOCAL_EXPORT_C_INCLUDES := $(XSERVER_PATH)/include
 LOCAL_CFLAGS    := \
     -DHAVE_DIX_CONFIG_H \
     -DHAVE_XORG_CONFIG_H \
     -DXSERVER_LIBPCIACCESS \
     -DDATADIR=\"$(X4DROID_DATADIR)/usr/share/\" \
+    $(X4DROID_CFLAGS)
     
 LOCAL_SRC_FILES := 	\
     xfree86/sdksyms.c \
@@ -92,7 +94,42 @@ LOCAL_SRC_FILES := 	\
     xfree86/ramdac/xf86RamDac.c  \
     xfree86/ramdac/xf86RamDacCmap.c
 
-LOCAL_STATIC_LIBRARIES := libXfont libpciaccess
-LOCAL_SHARED_LIBRARIES := libpixman
+LOCAL_STATIC_LIBRARIES :=		\
+    libXServer-android			\
+    libXServer-dix 				\
+    libXServer-composite 		\
+    libXServer-xfixes 			\
+    libXServer-dbe 				\
+    libXServer-xkb 				\
+    libXServer-fb 				\
+    libXServer-mi 				\
+    libXServer-config			\
+    libXServer-Xext 			\
+    libXServer-miext 			\
+    libXServer-Xi 				\
+    libXServer-present			\
+    libXServer-record 			\
+    libXServer-damageext 		\
+    libXServer-randr 			\
+    libXServer-render 			\
+    libXServer-os 				\
+    libcrypto_static			\
+    libminzip_xorg				\
+    libXau						\
+    libXdmcp					\
+    libXfont					\
+    libxshmfence				\
+    libpciaccess
 
-include $(BUILD_STATIC_LIBRARY)
+LOCAL_SHARED_LIBRARIES := libpixman_full
+
+ifeq ($(XORG_NDK_BUILD),true)
+LOCAL_LDFLAGS := -lz -lm -llog -landroid
+endif
+
+ifeq ($(XORG_NDK_BUILD),false)
+LOCAL_SHARED_LIBRARIES += libz libm liblog libandroid
+endif
+
+
+include $(BUILD_SHARED_LIBRARY)

@@ -1,3 +1,4 @@
+#include <unistd.h>
 #include <pthread.h>
 #include <signal.h>
 #include <sys/stat.h>
@@ -18,7 +19,7 @@ int assets_extract(const char *from, const char *to);
 
 extern int dix_main(int argc, char *argv[], char *envp[]);
 #define jniMethodCheck(name) if (name##ID == NULL) { LOGE("Method %s can not be loaded", #name); return; }
-static void activity_finish(void) {
+static void activity_force_finish(void) {
 	JavaVM* vm = android_app_state->activity->vm;
 	JNIEnv* env; // = android_app_state->activity->env;
     jclass classActivity;
@@ -34,13 +35,14 @@ static void activity_finish(void) {
 
     (*env)->CallVoidMethod(env, android_app_state->activity->clazz, activityFinishID);
 
-
 	pthread_exit(NULL);
 }
 
 void exit(int __status) {
-	ANativeActivity_finish(android_app_state->activity);
-	activity_finish();
+	if (android_app_state){
+		ANativeActivity_finish(android_app_state->activity);
+		activity_force_finish();
+	} else _exit(0);
 }
 
 void abort(void){
@@ -121,6 +123,7 @@ void android_main(struct android_app* state)
 	const char *xkbcomp = BINDIR "/xkbcomp";
 	
 	xf86ModulePath = getNativeLibraryDir();
+	xf86LogFile = "/dev/null";
 
 	LD_LIBRARY_PATH_append(xf86ModulePath);
 	

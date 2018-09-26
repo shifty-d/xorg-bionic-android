@@ -1148,12 +1148,6 @@ static void xf86_mkdir_p(char *path)
 void
 xf86LogInit(void)
 {
-#if defined(ANDROID) || defined(__ANDROID__)
-    xf86LogFile = NULL;
-    LogInit(NULL, NULL);
-    return;
-#endif
-
     char *env, *lf = NULL;
     char buf[PATH_MAX];
 

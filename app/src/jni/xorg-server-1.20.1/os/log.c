@@ -601,7 +601,6 @@ LogSWrite(int verb, const char *buf, size_t len, Bool end_line)
 {
 #if defined(__ANDROID__) || defined(ANDROID)
 	if (strlen(buf) > 0) __android_log_write(ANDROID_LOG_INFO, "org.x.android", buf);
-	return;
 #endif
     static Bool newline = TRUE;
     int ret;

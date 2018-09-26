@@ -4,9 +4,9 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE    := libXServer-miext 
 LOCAL_C_INCLUDES := $(XSERVER_INCLUDES)
-LOCAL_CFLAGS    := -DHAVE_DIX_CONFIG_H -DHAVE_XORG_CONFIG_H
+LOCAL_CFLAGS    := -DHAVE_DIX_CONFIG_H -DHAVE_XORG_CONFIG_H $(X4DROID_CFLAGS)
 LOCAL_STATIC_LIBRARIES := libXfont libxshmfence
-LOCAL_SHARED_LIBRARIES := libpixman
+LOCAL_SHARED_LIBRARIES := libpixman_full
 LOCAL_SRC_FILES := 	\
     damage/damage.c   \
     shadow/shadow.c   \

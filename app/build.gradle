@@ -17,7 +17,7 @@ android {
         
         externalNativeBuild {
 			ndkBuild {
-				targets 'Xorg', 'android_drv', 'dlinput_drv', 'xkbcomp'
+				targets 'XFree86', 'android_drv', 'dlinput_drv', 'xkbcomp'
 				cFlags
 			}
 		}
