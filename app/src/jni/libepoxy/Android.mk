@@ -1,7 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
-LOCAL_MODULE    := libepoxy
+LOCAL_MODULE    := libepoxy_droid
 
 LOCAL_CFLAGS    := 
 

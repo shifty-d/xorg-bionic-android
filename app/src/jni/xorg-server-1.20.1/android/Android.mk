@@ -12,6 +12,6 @@ LOCAL_EXPORT_LDLIBS := -llog -landroid -lEGL -lGLESv1_CM
 
 LOCAL_STATIC_LIBRARIES := 	\
     libminzip_xorg			\
-    android_native_app_glue
+    xorg_android_native_app_glue
 
 include $(BUILD_STATIC_LIBRARY)

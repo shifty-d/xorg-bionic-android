@@ -150,7 +150,7 @@ SecurityLabelInitial(void)
 static _X_INLINE const char *
 SecurityLookupRequestName(ClientPtr client)
 {
-    return LookupRequestName(client->majorOp, client->minorOp);
+    return (const char*) LookupRequestName(client->majorOp, client->minorOp);
 }
 
 /* SecurityDeleteAuthorization

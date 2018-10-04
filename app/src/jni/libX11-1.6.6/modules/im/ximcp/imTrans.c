@@ -82,7 +82,7 @@ _XimTransConnect(
 
     for (retry = XIM_CONNECTION_RETRIES; retry >= 0; retry--)
     {
-	if ((spec->trans_conn = _XimXTransOpenCOTSClient (
+	if ((spec->trans_conn = (struct _XtransConnInfo*) _XimXTransOpenCOTSClient (
 	    spec->address)) == NULL)
 	{
 	    break;

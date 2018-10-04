@@ -114,7 +114,7 @@ BuiltinFileOpen (const char *name)
 	free (io);
 	return NULL;
     }
-    if ((cooked = BufFilePushZIP (raw)))
+    if ((cooked = (BufFilePtr) BufFilePushZIP (raw)))
 	raw = cooked;
     else
     {
