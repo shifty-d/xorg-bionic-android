@@ -3,7 +3,7 @@
 
 #ifndef _DIX_CONFIG_H_
 #define _DIX_CONFIG_H_
-
+#define DBG ErrorF("Here! %s (%d)\n", __FILE__, __LINE__)
 /* Support BigRequests extension */
 #define BIGREQS 1
 

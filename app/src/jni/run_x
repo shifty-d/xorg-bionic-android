@@ -7,10 +7,14 @@ adb shell pkill Xorg
 
 adb shell mkdir /Xorg
 adb shell mkdir -p /Xorg/modules/drivers
+adb shell mkdir -p /Xorg/modules/input
 adb shell mkdir -p /data/org.x.android//usr/bin/
 adb push out/target/product/generic/system/bin/xkbcomp /data/org.x.android//usr/bin/
 adb push out/target/product/generic/system/bin/Xorg /Xorg/
+adb push out/target/product/generic/system/lib/libandroid_drv.so /Xorg/modules/drivers/
 adb push out/target/product/generic/system/lib/hwcomposer_drv.so /Xorg/modules/drivers/
+adb push out/target/product/generic/system/lib/surfaceflinger_drv.so /Xorg/modules/drivers/
+adb push out/target/product/generic/system/lib/mtev_drv.so /Xorg/modules/input/
 adb push out/target/product/generic/system/lib/libepoxy_droid.so /Xorg/
 adb push out/target/product/generic/system/lib/libexpat.so /Xorg/
 adb push out/target/product/generic/system/lib/libpixman_full.so /Xorg/
@@ -18,7 +22,7 @@ adb push out/target/product/generic/system/lib/libXFree86.so /Xorg/
 adb push out/target/product/generic/system/lib/libX11.so /Xorg/
 adb push x4droid/xorg.conf /Xorg/
 
-adb push out/target/product/generic/system/bin/test_hwcomposer /Xorg/
+#adb push out/target/product/generic/system/bin/test_hwcomposer /Xorg/
 
-adb shell LD_LIBRARY_PATH=/Xorg /Xorg/Xorg -modulepath /Xorg/modules -logfile /dev/null -verbose 10 -config /Xorg/xorg.conf
+adb shell LD_LIBRARY_PATH=/Xorg /Xorg/Xorg -modulepath /Xorg/modules -logfile /Xorg.0.log -verbose 10 -config /Xorg/xorg.conf -ac -listen tcp
 #adb shell LD_LIBRARY_PATH=/Xorg/ sh -c /Xorg/test_hwcomposer
